@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://bfwifylay8d2y"]
+
+[ext_resource type="Script" path="res://chocolate.gd" id="1_d5pte"]
+[ext_resource type="Texture2D" uid="uid://bfr22bmtx2ers" path="res://Sprites/SpriteMau/Chocolate.png" id="1_unsmi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vaku"]
+atlas = ExtResource("1_unsmi")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybs3u"]
+atlas = ExtResource("1_unsmi")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ud88n"]
+atlas = ExtResource("1_unsmi")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibydw"]
+atlas = ExtResource("1_unsmi")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wgj0g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vaku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybs3u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ud88n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibydw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6vc1x"]
+radius = 6.08276
+
+[node name="Chocolate" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_d5pte")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wgj0g")
+autoplay = "default"
+frame = 1
+frame_progress = 0.174888
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6vc1x")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
